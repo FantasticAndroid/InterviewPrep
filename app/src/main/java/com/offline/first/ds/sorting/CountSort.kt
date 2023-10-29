@@ -1,7 +1,6 @@
 package com.offline.first.ds.sorting
 
 import android.util.Log
-import java.util.Collections
 
 private const val TAG= "CountSort"
 object CountSort{
@@ -17,7 +16,7 @@ object CountSort{
             }
         }
         // Create array of max+1 size with 0 as default value in it
-        val counterArray = Array<Int>(max+1) {
+        val counterArray = Array<Int>(max + 1) {
             0
         }
         // fil counter array as arr data map with count array indexes

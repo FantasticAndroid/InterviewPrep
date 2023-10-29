@@ -7,11 +7,22 @@ import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.ReplaySubject
 
 private const val TAG = "SubjectDemo"
+
+/**
+ *  Subject can act as both Observable as well as Observer.
+ *  A Subject is a sort of bridge or proxy that is available in some implementations
+ *  of ReactiveX that acts both as an observer and as an Observable.
+ *  Because it is an observer, it can subscribe to one or more Observables, and because
+ *  it is an Observable, it can pass through the items it observes by re-emitting them,
+ *  and it can also emit new items.
+ */
 object SubjectDemo {
 
     /**
      * PublishSubject emits items to currently subscribed Observers and
      * terminal events to current or late Observers.
+     * Next Observer will get last emitted item only
+     * Result:-> result1-> abcdefg, result2-> defg, result3 -> fg
      */
     fun applyPublishSubjectDemo(){
         val result1 = StringBuilder()
@@ -48,6 +59,7 @@ object SubjectDemo {
     /**
      * BehaviorSubject emits the most recent item it has observed and
      * then all subsequent observed items to each subscribed Observer.
+     * Result:-> result1-> abcdefg, result2-> cdefg, result3 -> efg
      */
     fun applyBehaviorSubjectDemo(){
         val result1 = StringBuilder()
@@ -74,15 +86,14 @@ object SubjectDemo {
         subject.onNext("g") // Most Recent item
         subject.onComplete()
 
-        //Output will be abcd
         Log.d(TAG, "applyBehaviorSubjectDemo result1: $result1")
-        //Output will be d only as subscribed after c item emitted.
         Log.d(TAG, "applyBehaviorSubjectDemo result2: $result2")
         Log.d(TAG, "applyBehaviorSubjectDemo result3: $result3")
     }
 
     /**
      * ReplaySubject replays events/items to current and late Observers.
+     * Result:-> result1-> abcdefg, result2-> abcdefg, result3 -> abcdefg
      */
     fun applyReplaySubjectDemo(){
         val result1 = StringBuilder()
@@ -117,6 +128,7 @@ object SubjectDemo {
     /**
      * AsyncSubject emits the only last value followed by a completion event
      * or the received error to Observers.
+     * Result-> g
      */
     fun applyAsyncSubjectDemo(){
         val result1 = StringBuilder()

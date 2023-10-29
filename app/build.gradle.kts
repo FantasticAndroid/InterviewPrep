@@ -10,15 +10,13 @@ android {
 
     defaultConfig {
         applicationId = "com.offline.first"
-        minSdk = 24
+        minSdk = 28
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary = true
-        }
     }
 
     buildTypes {
@@ -39,6 +37,10 @@ android {
     }
     buildFeatures {
         compose = true
+    }
+
+    viewBinding {
+        enable = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
@@ -63,6 +65,10 @@ dependencies {
 
     implementation(libs.rxJava)
     implementation(libs.rxAndroid)
+    implementation(libs.appcompat)
+    implementation(libs.material)
+    implementation(libs.constraintlayout)
+    debugImplementation(project(":leakcanarylib"))
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)

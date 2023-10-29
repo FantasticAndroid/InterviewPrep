@@ -4,7 +4,7 @@ import android.util.Log
 
 private const val TAG = "PyramidImpl"
 
-object PyramidImpl1 {
+object PyramidImpl {
 
     fun showPyramid(noOfRows: Int) : String {
         //val reversed = reverseStringRecursion(string = string)

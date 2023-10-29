@@ -6,12 +6,92 @@ private const val TAG = "FindNumberImpl"
 
 object FindInNumberOrStringImpl {
 
+    fun findLongestSubStringWithoutRepeatingCharacters(string: String) {
+
+        // GeeksForGeeks
+
+        val visited = ArrayList<Char>()
+        // Visit element from start to string end until found repeating character
+        var left = 0
+        var right = 0
+        var maxLength = 0
+        while (right < string.length) {
+            if (visited.contains(string[right])) {
+                left = right
+                visited.clear()
+            }
+            visited.add(string[right])
+            maxLength = maxLength.coerceAtLeast(right - left + 1)
+            right++
+            Log.d(
+                TAG,
+                "findLongestSubStringWithoutRepeatingCharacters subString: ${string.substring(left, right)}"
+            )
+        }
+        Log.d(
+            TAG,
+            "findLongestSubStringWithoutRepeatingCharacters string: $string, subString: ${string.substring(left, right)}, maxLength: $maxLength"
+        )
+    }
+
+    /**
+     * Find the nth largest number from Given array
+     */
+    fun findAnyLargestNoFromArray(arr: Array<Int>, n: Int) {
+        if (n > arr.size) {
+            Log.d(TAG, "findAnyLargestNoFromArray arr size: ${arr.size}, n: $n, n is Invalid")
+            return
+        }
+        var pass = arr.size - 1
+        val maxPass = arr.size - n
+        while (pass >= maxPass) {
+            for (index in 0 until pass) {
+                if (arr[index + 1] < arr[index]) {
+                    val temp = arr[index]
+                    arr[index] = arr[index + 1]
+                    arr[index + 1] = temp
+                }
+            }
+            pass--
+        }
+
+        Log.d(
+            TAG,
+            "findAnyLargestNoFromArray arr: ${arr.toList()}, $n:thLargest: ${arr[arr.size - n]}"
+        )
+    }
+
+    fun findAnyLargestNoFromArrayForLoop(arr: Array<Int>, n: Int) {
+        if (n > arr.size) {
+            Log.d(
+                TAG,
+                "findAnyLargestNoFromArrayForLoop arr size: ${arr.size}, n: $n, n is Invalid"
+            )
+            return
+        }
+
+        for (pass in (arr.size - 1) downTo (arr.size - n)) {
+            for (index in 0 until pass) {
+                if (arr[index + 1] < arr[index]) {
+                    val temp = arr[index]
+                    arr[index] = arr[index + 1]
+                    arr[index + 1] = temp
+                }
+            }
+        }
+
+        Log.d(
+            TAG,
+            "findAnyLargestNoFromArrayForLoop arr: ${arr.toList()}, $n:thLargest: ${arr[arr.size - n]}"
+        )
+    }
 
     /**
      * find the largest number ‘L’ less than a given number ‘N’ which should not contain a given digit ‘D’.
      * If 145 is the given number and 4 is the given digit,
      * then you should find the largest number less than 145 such that it should not contain 4 in it.
      * Answer, 139
+     * In below program, D is not given, so we find D as let D is the largest digit in the given number
      * @param number Long
      */
     fun findGivenNumberImpl(number: Long) {
@@ -69,6 +149,10 @@ object FindInNumberOrStringImpl {
         )
     }
 
+    /**
+     * Find sub array which total equal to the size of the array.
+     * @param array Array<Int>
+     */
     fun findSubArray(array: Array<Int>) {
         val subList = ArrayList<Int>()
 
@@ -153,13 +237,41 @@ object FindInNumberOrStringImpl {
      * @param targetString String
      * @return Boolean
      */
-    fun findStringIsRotated(sourceString: String, targetString: String): Boolean{
-        val isRotated = if(sourceString.length != targetString.length){
+    fun findStringIsRotated(sourceString: String, targetString: String): Boolean {
+        val isRotated = if (sourceString.length != targetString.length) {
             false
-        }else{
+        } else {
             (sourceString + sourceString).contains(targetString)
         }
-        Log.d(TAG, "findStringIsRotated source: $sourceString, target: $targetString, isRotated: $isRotated")
+        Log.d(
+            TAG,
+            "findStringIsRotated source: $sourceString, target: $targetString, isRotated: $isRotated"
+        )
         return isRotated
+    }
+
+    fun findSecondLargestInArray(array: Array<Int>): Int {
+        var max = array[0]
+        var sMax = array[1]
+        if (max < sMax) {
+            val temp = max
+            max = sMax
+            sMax = temp
+        }
+
+        (2 until array.size).forEach { index ->
+            if (array[index] > max) {
+                sMax = max
+                max = array[index]
+            } else if (array[index] > sMax) {
+                sMax = array[index]
+            }
+            Log.d(TAG, "find max:$max, sMax: $sMax")
+        }
+        Log.d(
+            TAG,
+            "findSecondLargestInArray array: ${array.toList()}, secondMax: $sMax"
+        )
+        return sMax
     }
 }

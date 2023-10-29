@@ -24,4 +24,15 @@ object SeparateNoInArray {
         }
         Log.d(TAG, "separateNoFromArray array: ${array.toList()}, sList: $list")
     }
+
+    fun separateNoFromArray2(array: Array<Int>, separateNo: Int){
+        val list = array.toMutableList()
+
+        val index = array.indexOf(separateNo)
+        if(index>=0) {
+            list.removeAt(index)
+        }
+        list.add(0, separateNo)
+        Log.d(TAG, "separateNoFromArray array: ${array.toList()}, sList: $list")
+    }
 }

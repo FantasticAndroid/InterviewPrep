@@ -28,7 +28,7 @@ class PhoneAdapter : ICharger {
      * Upon receiving a call, the adapter passes the request to the second object,
      * but in a format and order that the second object expects.
      */
-    override fun charge() {
-        iPhone4Charger.charge()
+    override fun charge(current: Long) {
+        iPhone4Charger.charge(current.toInt())
     }
 }

@@ -1,6 +1,7 @@
 package com.offline.first.problemsolving
 
 import android.util.Log
+import kotlin.math.pow
 
 private const val TAG = "ArmstrongImpl"
 
@@ -9,7 +10,7 @@ private const val TAG = "ArmstrongImpl"
  */
 object ArmstrongImpl {
 
-    fun findArmstrongNo(number: Long): Boolean {
+    fun isArmstrongNo1(number: Long): Boolean {
         val isArmstrong = false
 
         val numberLength = number.toString().length
@@ -30,8 +31,24 @@ object ArmstrongImpl {
 
         Log.d(
             TAG,
-            "findArmstrongNo number: $number, isArmstrong: ${number == armNumber}"
+            "findArmstrongNo1 number: $number, isArmstrong: ${number == armNumber}"
         )
         return isArmstrong
+    }
+
+    fun isArmstrongNo2(number: Long): Long {
+        val length = number.toString().length
+        var cNumber = number
+        var sum = 0L
+        while (cNumber > 0) {
+            val digit = cNumber % 10
+            sum += digit.toDouble().pow(length).toLong()
+            cNumber /= 10
+        }
+        Log.d(
+            TAG,
+            "isArmstrongNo2 number: $number, isArmstrong: ${number == sum}"
+        )
+        return sum
     }
 }

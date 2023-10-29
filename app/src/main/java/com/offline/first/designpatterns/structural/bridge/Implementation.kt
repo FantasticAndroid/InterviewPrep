@@ -13,6 +13,7 @@ interface IDevice{
     fun setChannel(channelNo: Int)
     fun getBrightness() : Int
     fun setBrightness(brightness: Int)
+    fun blinkLED()
 }
 
 /**
@@ -49,6 +50,10 @@ class TVDevice(override var power: Boolean) : IDevice{
         this.brightness = brightness
     }
 
+    override fun blinkLED() {
+        // Do LED blink
+    }
+
     override fun getVolume(): Int {
         return volume
     }
@@ -76,7 +81,11 @@ class RadioDevice(override var power: Boolean) : IDevice{
     }
 
     override fun setBrightness(brightness: Int) {
-        // Not Requireds
+        // Not Required
+    }
+
+    override fun blinkLED() {
+        // No LED in Radio, do Nothing
     }
 
     override fun getVolume(): Int {

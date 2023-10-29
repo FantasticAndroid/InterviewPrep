@@ -15,8 +15,23 @@
               </deviceKey>
             </Target>
           </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2023-10-13T16:19:00.078150800Z" />
+          <timeTargetWasSelectedWithDropDown value="2023-10-20T14:41:33.660991100Z" />
         </State>
+      </entry>
+      <entry key="isApplicationContext()">
+        <State />
+      </entry>
+      <entry key="isFileDeleted()">
+        <State />
+      </entry>
+      <entry key="leakcanarylib">
+        <State />
+      </entry>
+      <entry key="willThrowException()">
+        <State />
+      </entry>
+      <entry key="willThrowExceptions()">
+        <State />
       </entry>
     </value>
   </component>

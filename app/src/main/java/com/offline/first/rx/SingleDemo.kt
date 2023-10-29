@@ -15,8 +15,8 @@ private const val TAG = "SingleDemo"
  * Single:- Represents a stream that emits a single item or an error.
  *
  * Single type of Observable is used when you have to return a single item
- * Item will be returned when onSuccess will be called, If there is any error occurs
- * then it will call onError
+ * Item will be returned when onSuccess will be called.
+ * If there is any error occurs then it will call onError
  */
 object SingleDemo {
 

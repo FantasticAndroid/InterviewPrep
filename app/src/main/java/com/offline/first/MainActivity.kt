@@ -1,6 +1,7 @@
 package com.offline.first
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
@@ -11,16 +12,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import com.offline.first.problemsolving.ArrayIntersectionImpl
-import com.offline.first.problemsolving.DecimalToConvertor
-import com.offline.first.problemsolving.PalindromeImpl
-import com.offline.first.problemsolving.SeparateNoInArray
-import com.offline.first.problemsolving.StringReverseImpl3
+import androidx.lifecycle.lifecycleScope
+import com.offline.first.designpatterns.delegates.TAG
+import com.offline.first.problemsolving.FindInNumberOrStringImpl
 import com.offline.first.ui.theme.OfflineFirstDemoTheme
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // To Test LeakCanary only
+        // InterviewApp.main = this
         setContent {
             OfflineFirstDemoTheme {
                 // A surface container using the 'background' color from the theme
@@ -31,9 +34,45 @@ class MainActivity : ComponentActivity() {
                     //Greeting("Android")
                     printText("")
                     applyDemos()
+                    //applyRunBlockingDemo()
                 }
             }
         }
+        /*startActivity(Intent(this, DelegateActivity::class.java))
+        finish()*/
+    }
+
+    private fun applyRunBlockingDemo() {
+        Log.d(TAG,"applyRunBlockingDemo Before run-blocking")
+        lifecycleScope.launch(Dispatchers.IO) {
+            Log.d(TAG,"applyRunBlockingDemo just entered into the runBlocking ")
+            //delay(5000)
+
+            Log.d(TAG,"applyRunBlockingDemo start of the run-blocking")
+            Log.d(TAG,"applyRunBlockingDemo End of the runBlocking")
+        }
+        Log.d(TAG,"applyRunBlockingDemo after the run blocking")
+
+        /*lifecycleScope.launch(Dispatchers.IO) {
+            Log.d(TAG,"applyRunBlockingDemo just entered into the runBlocking ")
+            //delay(5000)
+
+            Log.d(TAG,"applyRunBlockingDemo start of the run-blocking")
+            Log.d(TAG,"applyRunBlockingDemo End of the runBlocking")
+        }
+
+        Log.d(TAG,"applyRunBlockingDemo after the run blocking")*/
+
+        /*********************************/
+
+        /*runBlocking(Dispatchers.IO){
+            Log.d(TAG,"applyRunBlockingDemo just entered into the runBlocking ")
+            delay(5000)
+
+            Log.d(TAG,"applyRunBlockingDemo start of the run-blocking")
+            Log.d(TAG,"applyRunBlockingDemo End of the runBlocking")
+        }
+        Log.d(TAG,"applyRunBlockingDemo after the run blocking")*/
     }
 }
 
@@ -63,7 +102,8 @@ fun lambdaFunExample() {
     println({ a: String, b: String -> "$a $b" }("Hüseyin", "Özkoç"))
 }
 
-/*Kotlin functions are considered “First Class Citizen” which means they can be assigned to variables, passed as parameters to other functions, or returned as function values.*/
+/*Kotlin functions are considered “First Class Citizen” which means they can be assigned to variables,
+ passed as parameters to other functions, or returned as function values.*/
 fun anonymousFunExample() {
     //Syntax of Anonymous Function
     /*val myVariableName: (FirstDataType,SecondDataType) -> ReturnType =
@@ -138,16 +178,33 @@ private fun applyDemos() {
 
     //BinarySearchTreeOpt.applyBinarySearchTree()
 
-    //OperatorsDemo.applyConcat()
-    //OperatorsDemo.applyMerge()
+    /*OperatorsDemo.applyConcat()
+    OperatorsDemo.applyMerge()*/
+
+    /*OperatorsDemo.applyFlatMap2()
+    OperatorsDemo.applySwitchMap2()*/
+
+    //OperatorsDemo.applyFlatMapDelay()
+    //OperatorsDemo.applySwitchMapDelay()
+
     //OperatorsDemo.applySwitchMap()
     //OperatorsDemo.applyCombineLatest()
+    //OperatorsDemo.applyCombineLatest2()
     //ObservableDemo.applyObservableDemo6()
 
-    /*SubjectDemo.applyPublishSubjectDemo()
-    SubjectDemo.applyBehaviorSubjectDemo()
-    SubjectDemo.applyReplaySubjectDemo()
-    SubjectDemo.applyAsyncSubjectDemo()*/
+    //ReduceOperatorsDemo.applyCountOperator()
+    //ReduceOperatorsDemo.applyReduceOperator()
+
+    //TransformationalOperatorDemo.applyScanOperator()
+    //TransformationalOperatorDemo.applyBufferOperator()
+    //TransformationalOperatorDemo.applySwitchMapDelay()
+
+    //CombiningOperatorsDemo.applySwitchOnNext()
+
+    //SubjectDemo.applyPublishSubjectDemo()
+    //SubjectDemo.applyBehaviorSubjectDemo()
+    //SubjectDemo.applyReplaySubjectDemo()
+    //SubjectDemo.applyAsyncSubjectDemo()
 
     //CompositeImpl.applyCompositeImpl()
 
@@ -162,8 +219,15 @@ private fun applyDemos() {
     ArmstrongImpl.findArmstrongNo(54748)
     ArmstrongImpl.findArmstrongNo(407)
     ArmstrongImpl.findArmstrongNo(1234)*/
+
     //AnagramImpl.findAnagram("Mother In Law", "Hitler Woman")
+    //AnagramImpl.findAnagram2("Mother In Law", "Hitler Woman")
+
+    //FindInNumberOrStringImpl.findSecondLargestInArray(arrayOf(45, 51, 28, 75, 49, 42))
+    //FindInNumberOrStringImpl.findSecondLargestInArray(arrayOf(985, 521, 975, 831, 479, 861))
+
     //AnagramImpl.findAnagram("Mother In Law1", "Hitler Woman2")
+
     //SumOfDigitsImpl.findSumOfDigits(923045)
     //FindNumberImpl.findGivenNumberImpl(145)
     //FindNumberImpl.findPairInArray(arrayOf(4, 1, 3, 3, 5, 2, 0, 6, 5, 4))
@@ -185,10 +249,27 @@ private fun applyDemos() {
     DecimalToConvertor.decimalToConvertor(1000, 8)
     DecimalToConvertor.decimalToConvertor(2000, 16)*/
 
-    PalindromeImpl.findPalindrome(12321)
+    /*PalindromeImpl.findPalindrome(12321)
     PalindromeImpl.findPalindrome(12344321)
     PalindromeImpl.findPalindrome(12343321)
-    PalindromeImpl.findPalindrome(12334321)
+    PalindromeImpl.findPalindrome(12334321)*/
+
+    /*Program.findLength("pwwkkew")
+    Program.findLength("pww kkew")
+    Program.findLength("pwwkewke")
+    Program.findLength("abcdef abcdef fdcbd ")
+    Program.findLength("abcdeedcbaa")*/
+
+    //ObserverPatternImpl.applyObserverPattern()
+
+    /*FindInNumberOrStringImpl.findAnyLargestNoFromArray(arrayOf(1,2,3,4,5), 5)
+    FindInNumberOrStringImpl.findAnyLargestNoFromArray(arrayOf(5,4,3,2,1), 5)
+    FindInNumberOrStringImpl.findAnyLargestNoFromArray(arrayOf(5,4,3,7,6), 3)
+    FindInNumberOrStringImpl.findAnyLargestNoFromArray(arrayOf(10,5,50,45,55,4,70,1,0,9), 2)*/
+
+    FindInNumberOrStringImpl.findLongestSubStringWithoutRepeatingCharacters("GeeksForGeeks")
+    //FindInNumberOrStringImpl.findLongestSubStringWithoutRepeatingCharacters("Thisisrepeat")
+    //FindInNumberOrStringImpl.findLongestSubStringWithoutRepeatingCharacters("bookanytickettransfer")
 }
 
 @Composable

@@ -12,8 +12,8 @@ class IPhone6 {
     fun <T: ICharger> doCharge(charger: T) {
         // Log.d(TAG, "doCharge with: ${T::class.java}")
         // Compile type error: Cannot use 'T' as reified type parameter.
-        // Use a class instead. Make T refied and doCharge inline
-        charger.charge()
+        // Use a class instead. Make T reified and doCharge inline
+        charger.charge(100)
     }
 
     /**
@@ -22,6 +22,6 @@ class IPhone6 {
      */
     inline fun <reified T: ICharger> doChargeThis(charger: T) {
         Log.d(TAG, "doChargeThis with: ${T::class.java}")
-        charger.charge()
+        charger.charge(100)
     }
 }

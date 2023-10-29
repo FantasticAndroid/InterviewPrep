@@ -17,6 +17,18 @@ abstract class AbsObjectPool<T>// initialize pool
     init {
         createMinimumObjects(minObjects)
 
+        /*val executorService = Executors.newFixedThreadPool(3)
+        executorService.submit(object: Runnable{
+            override fun run() {
+                TODO("Not yet implemented")
+            }
+        })
+        executorService.submit(object: Callable<String>{
+            override fun call() : String {
+                TODO("Not yet implemented")
+            }
+        })*/
+
         executorService = Executors.newSingleThreadScheduledExecutor()
         executorService.scheduleWithFixedDelay({
             val size = pool.size

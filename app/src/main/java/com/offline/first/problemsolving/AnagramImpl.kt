@@ -5,6 +5,8 @@ import android.util.Log
 private const val TAG = "AnagramImpl"
 
 /**
+ * https://javaconceptoftheday.com/java-interview-programs-with-solutions/
+ *
  * Two strings are said to be anagram if they contain same set of characters but in different order.
  * For example, “Mother In Law” and “Hitler Woman” are anagrams.
  */
@@ -30,15 +32,15 @@ object AnagramImpl {
                 }
             }
 
-            Log.d(TAG, "findAnagram, s1Sorted: ${s1Sorted.toList()}, s2Sorted: ${s2Sorted.toList()}")
+            //Log.d(TAG, "findAnagram, s1Sorted: ${s1Sorted.toList()}, s2Sorted: ${s2Sorted.toList()}")
             isEqual
         }
 
-        Log.d(
+        /*Log.d(
             TAG,
             "findAnagram string1: $s1, string2: $s2, isAnagram: $isAnagram"
-        )
-        findAnagram2(s1, s2)
+        )*/
+        //findAnagram2(s1, s2)
         return isAnagram
     }
 

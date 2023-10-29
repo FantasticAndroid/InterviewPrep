@@ -1,5 +1,5 @@
 [versions]
-agp = "8.3.0-alpha07"
+agp = "8.3.0-alpha11"
 kotlin = "1.9.0"
 core-ktx = "1.10.1"
 junit = "4.13.2"
@@ -10,6 +10,11 @@ activity-compose = "1.7.0"
 compose-bom = "2023.08.00"
 rxAndroid ="3.0.2"
 rxJava = "3.1.8"
+appcompat = "1.6.1"
+material = "1.9.0"
+constraintlayout = "2.1.4"
+workmanager = "2.8.1"
+leakcanary = "2.12"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -28,8 +33,16 @@ ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 material3 = { group = "androidx.compose.material3", name = "material3" }
 rxAndroid = {group = "io.reactivex.rxjava3", name="rxandroid", version.ref = "rxAndroid"}
 rxJava = {group = "io.reactivex.rxjava3", name="rxjava", version.ref = "rxJava"}
+appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+workmanager = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "workmanager" }
+workmanager-rx = { group = "androidx.work", name = "work-rxjava3", version.ref = "workmanager" }
+workmanager-multiprocess = { group = "androidx.work", name = "work-multiprocess", version.ref = "workmanager" }
+leakcanary = { group = "com.squareup.leakcanary", name = "leakcanary-android", version.ref = "leakcanary" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+androidLibrary = { id = "com.android.library", version.ref = "agp" }
 

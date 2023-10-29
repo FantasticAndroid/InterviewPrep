@@ -21,4 +21,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "InterviewPrep"
 include(":app")
- 
+include(":workmanager")
+include(":leakcanarylib")

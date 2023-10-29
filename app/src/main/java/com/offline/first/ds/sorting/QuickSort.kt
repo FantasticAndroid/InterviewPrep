@@ -7,7 +7,7 @@ private const val TAG = "QuickSort"
 /**
  * In initial START is 0, END = arr.size - 1
  *
- * Start from START index,say arr[ START ] item is Pivot. Let i = start
+ * Start from START index,say arr[ START ] item is Pivot. Let i = START
  * Start with i+1 and find index of element which is > Pivot. Let founded index is H
  * Similarly start from END and find index of element which is <= Pivot. Let founded index is S
  * If (H < S), swap values of those indexes.
