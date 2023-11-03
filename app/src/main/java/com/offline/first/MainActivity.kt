@@ -14,7 +14,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.lifecycleScope
 import com.offline.first.designpatterns.delegates.TAG
-import com.offline.first.problemsolving.FindInNumberOrStringImpl
+import com.offline.first.flow.FlowDemo
 import com.offline.first.ui.theme.OfflineFirstDemoTheme
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -267,9 +267,17 @@ private fun applyDemos() {
     FindInNumberOrStringImpl.findAnyLargestNoFromArray(arrayOf(5,4,3,7,6), 3)
     FindInNumberOrStringImpl.findAnyLargestNoFromArray(arrayOf(10,5,50,45,55,4,70,1,0,9), 2)*/
 
-    FindInNumberOrStringImpl.findLongestSubStringWithoutRepeatingCharacters("GeeksForGeeks")
+    //FindInNumberOrStringImpl.findLongestSubStringWithoutRepeatingCharacters("GeeksForGeeks")
     //FindInNumberOrStringImpl.findLongestSubStringWithoutRepeatingCharacters("Thisisrepeat")
     //FindInNumberOrStringImpl.findLongestSubStringWithoutRepeatingCharacters("bookanytickettransfer")
+
+    //LeetCode.findBitwiseXORArray(intArrayOf(5,2,0,3,1))
+    //LinkListNode.main()
+
+    FlowDemo.flowOfDemo()
+    FlowDemo.asFlowDemo()
+    FlowDemo.flowDemo()
+    FlowDemo.channelFlowDemo()
 }
 
 @Composable

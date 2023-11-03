@@ -10,9 +10,10 @@ object PalindromeImpl {
         val charArray = number.toString().toCharArray()
         var i = 0
         var j: Int = charArray.size - 1
+        val mid = charArray.size / 2
         var isPalindrome = true
 
-        while (i <= charArray.size / 2 && j >= charArray.size / 2) {
+        while (i <= mid && j >= mid) {
             if (charArray[i] != charArray[j]) {
                 isPalindrome = false
                 break

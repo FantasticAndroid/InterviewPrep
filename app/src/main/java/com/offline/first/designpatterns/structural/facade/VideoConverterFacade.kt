@@ -3,10 +3,9 @@ package com.offline.first.designpatterns.structural.facade
 import java.io.File
 import java.net.URI
 
-class VideoConverterFacade {
+class VideoConverterFacade : IFacade{
 
-    @Override
-    fun convert(fileName:String, format:String) : File{
+    override fun convert(fileName:String, format:String) : File{
 
         val file = VideoFile(fileName)
         val sourceCodec : SourceCodec = CodecFactory.extract(file)

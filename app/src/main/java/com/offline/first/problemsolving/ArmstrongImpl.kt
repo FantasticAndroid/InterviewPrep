@@ -6,7 +6,8 @@ import kotlin.math.pow
 private const val TAG = "ArmstrongImpl"
 
 /**
- * A number is called an Armstrong number if it is equal to sum of its digits each raised to the power of number of digits in it.
+ * A number is called an Armstrong number if it is equal to sum of its digits
+ * each raised to the power of number of digits in it.
  */
 object ArmstrongImpl {
 

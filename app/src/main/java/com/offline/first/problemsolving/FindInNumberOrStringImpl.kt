@@ -2,49 +2,74 @@ package com.offline.first.problemsolving
 
 import android.util.Log
 
-private const val TAG = "FindNumberImpl"
+private const val TAG = "FindInNumberOrStringImpl"
 
 object FindInNumberOrStringImpl {
 
-    fun findLongestSubStringWithoutRepeatingCharacters(string: String) {
+    /**
+     * Example 1:
+     *
+     * Input: s = "abcabcbb"
+     * Output: 3
+     * Explanation: The answer is "abc", with the length of 3.
+     * Example 2:
+     *
+     * Input: s = "bbbbb"
+     * Output: 1
+     * Explanation: The answer is "b", with the length of 1.
+     * Example 3:
+     *
+     * Input: s = "pwwkew"
+     * Output: 3
+     * Explanation: The answer is "wke", with the length of 3.
+     * Notice that the answer must be a substring, "pwke" is a subsequence and not a substring.
+     *
+     * Input: s = "dvdf"
+     * Output: 3 (vdf)
+     *
+     * @param s String
+     */
+    fun findLongestSubStringWithoutRepeatingCharacters(s: String): Int {
 
-        // GeeksForGeeks
+        var leftIndex = 0
+        var rightIndex = 0
+        val visitedLetters = HashSet<Char>()
+        var longest = 0
+        while (rightIndex < s.length) {
+            val char = s[rightIndex]
 
-        val visited = ArrayList<Char>()
-        // Visit element from start to string end until found repeating character
-        var left = 0
-        var right = 0
-        var maxLength = 0
-        while (right < string.length) {
-            if (visited.contains(string[right])) {
-                left = right
-                visited.clear()
+            if (!visitedLetters.contains(char)) {
+                visitedLetters.add(char)
+                longest = longest.coerceAtLeast(rightIndex - leftIndex + 1)
+            } else {
+                while (char != s[leftIndex]) {
+                    visitedLetters.remove(s[leftIndex])
+                    leftIndex++
+                }
+                leftIndex++
             }
-            visited.add(string[right])
-            maxLength = maxLength.coerceAtLeast(right - left + 1)
-            right++
-            Log.d(
-                TAG,
-                "findLongestSubStringWithoutRepeatingCharacters subString: ${string.substring(left, right)}"
-            )
+            rightIndex++
         }
-        Log.d(
-            TAG,
-            "findLongestSubStringWithoutRepeatingCharacters string: $string, subString: ${string.substring(left, right)}, maxLength: $maxLength"
-        )
+        visitedLetters.clear()
+        Log.d(TAG, "findLongestSubString, input:$s, length: $longest")
+        return longest
     }
 
     /**
-     * Find the nth largest number from Given array
+     * From Bubble Sort
+     * @param arr Array<Int>
+     * @param n Int, For ex n = 3 , means third largest
      */
-    fun findAnyLargestNoFromArray(arr: Array<Int>, n: Int) {
-        if (n > arr.size) {
-            Log.d(TAG, "findAnyLargestNoFromArray arr size: ${arr.size}, n: $n, n is Invalid")
+    fun findAnyLargestNoFromArrayBubbleSort(arr: Array<Int>, n: Int) {
+        if (n <= 0 || n > arr.size) {
+            Log.d(
+                TAG,
+                "findAnyLargestNoFromArrayBubbleSort arr size: ${arr.size}, n: $n, n is Invalid"
+            )
             return
         }
-        var pass = arr.size - 1
-        val maxPass = arr.size - n
-        while (pass >= maxPass) {
+
+        for (pass in (arr.size - 1) downTo (arr.size - n)) {
             for (index in 0 until pass) {
                 if (arr[index + 1] < arr[index]) {
                     val temp = arr[index]
@@ -52,17 +77,105 @@ object FindInNumberOrStringImpl {
                     arr[index + 1] = temp
                 }
             }
-            pass--
         }
 
         Log.d(
             TAG,
-            "findAnyLargestNoFromArray arr: ${arr.toList()}, $n:thLargest: ${arr[arr.size - n]}"
+            "findAnyLargestNoFromArrayBubbleSort arr: ${arr.toList()}, $n:thLargest: ${arr[arr.size - n]}"
         )
     }
 
-    fun findAnyLargestNoFromArrayForLoop(arr: Array<Int>, n: Int) {
-        if (n > arr.size) {
+    /**
+     * From InsertionSort
+     * @param arr Array<Int>
+     * @param n Int, For ex n = 3 , means third smallest
+     */
+    fun findAnySmallestNoFromArrayInsertionSort(arr: Array<Int>, n: Int) {
+        if (n <= 0 || n > arr.size) {
+            Log.d(
+                TAG,
+                "findAnySmallestNoFromArrayInsertionSort arr size: ${arr.size}, n: $n, n is Invalid"
+            )
+            return
+        }
+
+        for (pass in 0 until n) {
+            var sIndex = pass
+            for (index in pass+1 until arr.size) {
+                if (arr[index] < arr[sIndex]) {
+                    sIndex = index
+                }
+            }
+            val temp = arr[sIndex]
+            arr[sIndex] = arr[pass]
+            arr[pass] = temp
+        }
+
+        Log.d(
+            TAG,
+            "findAnySmallestNoFromArrayInsertionSort arr: ${arr.toList()}, $n:Smallest: ${arr[n-1]}"
+        )
+    }
+
+    /**
+     * Find the nth largest number from Given array
+     */
+    fun findAnyLargestNoFromArray(array: IntArray, n: Int) {
+        if (n > array.size) {
+            Log.d(TAG, "findAnyLargestNoFromArray arr size: ${array.size}, n: $n, n is Invalid")
+            return
+        }
+
+        val leftIndex = 0
+        val rightIndex = array.size - 1
+        doQuickSort(array.toMutableList(), leftIndex, rightIndex)
+        Log.d(
+            TAG,
+            "findAnyLargestNoFromArray arr: ${array.toList()}}"
+        )
+    }
+
+    private fun doQuickSort(array: MutableList<Int>, left: Int, right: Int) {
+        if (left < right) {
+            val partitionIndex = getPartitionIndex(array, left, right)
+            doQuickSort(array, left, partitionIndex - 1)
+            doQuickSort(array, partitionIndex + 1, right)
+        }
+    }
+
+    private fun getPartitionIndex(array: MutableList<Int>, left: Int, right: Int): Int {
+
+        //val pivot: Int = array[(left..right).random()]
+
+        val pivot: Int = array[left]
+        var hIndex = left + 1
+        var sIndex = right
+
+        do {
+            while (array[hIndex] <= pivot) {
+                hIndex++
+            }
+            while (array[sIndex] > pivot) {
+                sIndex--
+            }
+
+            if (hIndex < sIndex) {
+                val temp = array[hIndex]
+                array[hIndex] = array[sIndex]
+                array[sIndex] = temp
+            }
+
+        } while (hIndex < sIndex)
+
+        val temp = array[sIndex]
+        array[sIndex] = pivot
+        array[left] = temp
+
+        return sIndex
+    }
+
+    fun findAnyLargestNoFromArrayQuickSort(arr: Array<Int>, n: Int) {
+        if (n <= 0 || n > arr.size) {
             Log.d(
                 TAG,
                 "findAnyLargestNoFromArrayForLoop arr size: ${arr.size}, n: $n, n is Invalid"

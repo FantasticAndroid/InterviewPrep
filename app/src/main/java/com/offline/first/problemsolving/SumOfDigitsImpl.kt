@@ -29,7 +29,7 @@ object SumOfDigitsImpl {
     private fun recursion(number: Long): Long {
         //Log.d(TAG, "recursion: number: $number")
         return if (number == 0L) {
-            number
+            0
         } else {
             number % 10 + recursion(number/10)
         }
