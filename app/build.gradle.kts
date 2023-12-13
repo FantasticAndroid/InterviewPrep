@@ -68,7 +68,10 @@ dependencies {
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.constraintlayout)
-    debugImplementation(project(":leakcanarylib"))
+    implementation(libs.androidx.activity)
+    implementation(libs.gson)
+    //implementation(libs.material.icon)
+    //debugImplementation(project(":leakcanarylib"))
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)

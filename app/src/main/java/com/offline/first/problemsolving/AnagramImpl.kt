@@ -12,7 +12,54 @@ private const val TAG = "AnagramImpl"
  */
 object AnagramImpl {
 
-    fun findAnagram(s1: String, s2: String): Boolean {
+    fun findAnagramWithStringBuilder(s1: String, s2: String): Boolean {
+
+        val s = s1.replace(" ", "").lowercase()
+        val t = s2.replace(" ", "").lowercase()
+
+        if (s.length != t.length) {
+            return false
+        }
+
+        val sb = StringBuilder(t)
+
+        s.forEach {
+            if (sb.isEmpty() || !sb.contains(it)) {
+                return false
+            } else {
+                val index = sb.indexOf(it)
+                if(index >=0)
+                    sb.deleteCharAt(index)
+                ////sb.replaceFirst(it.toString().toRegex(), "")
+            }
+            println("it: $it, sb: $sb")
+        }
+        return sb.isEmpty()
+    }
+
+    fun findAnagram(s: String, t: String): Boolean {
+
+        val s1 = s.replace(" ", "").lowercase()
+        val s2 = t.replace(" ", "").lowercase()
+
+        if (s1.length != s2.length) {
+            return false
+        }
+
+        //val sArr1 = s1.toCharArray()
+        val st = s2.toCharArray().toMutableList()
+
+        s1.forEach {
+            if (st.isEmpty() || !st.contains(it)) {
+                return false
+            } else {
+                st.remove(it)
+            }
+        }
+        return st.isEmpty()
+    }
+
+    fun findAnagram1(s1: String, s2: String): Boolean {
 
         val string1 = s1.replace(" ", "").lowercase()
         val string2 = s2.replace(" ", "").lowercase()
@@ -26,7 +73,7 @@ object AnagramImpl {
             val s2Sorted = string2.toCharArray().sortedArray()
             var isEqual = true
             s1Sorted.forEachIndexed { index, item1 ->
-                if(item1 != s2Sorted[index]){
+                if (item1 != s2Sorted[index]) {
                     isEqual = false
                     return@forEachIndexed
                 }
@@ -66,5 +113,74 @@ object AnagramImpl {
             "findAnagram2 string1: $s1, string2: $s2, isAnagram: $isAnagram"
         )
         return isAnagram
+    }
+
+    /**
+     * findAnagram(arrayOf("eat","tea","tan","ate","nat","bat"))
+     * Output: [[eat, tea, ate], [tan, nat], [bat]]
+     * @param arr Array<String>
+     */
+    fun findAndGroupAnagram(arr: Array<String>) {
+        val anagramMap = HashMap<String, ArrayList<String>>()
+        arr.forEach { word ->
+            val sortedWord = word.toList().sorted().toString()
+            // val sortedWord = word.toCharArray().sortedArray().joinToString()
+            if(!anagramMap.containsKey(sortedWord)){
+                anagramMap.put(sortedWord, ArrayList<String>())
+            }
+            anagramMap.get(sortedWord)?.add(word)
+        }
+        Log.d(TAG, "findAndGroupAnagram anagramsGroup: ${anagramMap.values}")
+    }
+
+    val f : () -> String = {
+
+        ""
+    }
+
+    /**
+     * findAnagram(arrayOf("eat","tea","tan","ate","nat","bat"))
+     * Output: [[eat, tea, ate], [tan, nat], [bat]]
+     * @param arr Array<String>
+     */
+    fun findAnagram(arr: Array<String>){
+
+        val outputArr = ArrayList<ArrayList<String>>()
+
+        if(arr.isNotEmpty()){
+            val traversedAnagrams = ArrayList<String>()
+
+            arr.forEachIndexed{ index, item ->
+
+                if(!traversedAnagrams.contains(item)){
+                    val outputNext = ArrayList<String>()
+                    outputNext.add(item)
+
+                    for(iIndex in index + 1 until arr.size){
+
+                        val next = arr[iIndex]
+
+                        val sb = StringBuilder(next)
+
+                        item.forEach{ c ->
+
+                            if(sb.isEmpty() || !sb.contains(c)){
+                                return@forEach
+                            }else{
+                                sb.deleteCharAt(sb.indexOf(c))
+                            }
+                        }
+
+                        if(sb.isEmpty()){
+                            outputNext.add(next)
+                            traversedAnagrams.add(next)
+                        }
+                    }
+                    outputArr.add(outputNext)
+                }
+            }
+            traversedAnagrams.clear()
+            println("FindAnagram: $outputArr")
+        }
     }
 }

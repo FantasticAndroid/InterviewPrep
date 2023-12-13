@@ -27,6 +27,5 @@ object PrototypeImpl {
             TAG,
             "Movie: ${partnerMovieIndore.movieName}, theatreLocation: ${partnerMovieIndore.theatreLocation}"
         )
-
     }
 }

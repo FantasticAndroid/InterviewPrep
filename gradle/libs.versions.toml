@@ -1,5 +1,5 @@
 [versions]
-agp = "8.3.0-alpha12"
+agp = "8.3.0-alpha13"
 kotlin = "1.9.0"
 core-ktx = "1.10.1"
 junit = "4.13.2"
@@ -15,6 +15,8 @@ material = "1.9.0"
 constraintlayout = "2.1.4"
 workmanager = "2.8.1"
 leakcanary = "2.12"
+activity = "1.8.0"
+gson = "2.10.1"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -35,11 +37,15 @@ rxAndroid = {group = "io.reactivex.rxjava3", name="rxandroid", version.ref = "rx
 rxJava = {group = "io.reactivex.rxjava3", name="rxjava", version.ref = "rxJava"}
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+gson = {group = "com.google.code.gson", name="gson", version.ref = "gson"}
+# marerial-icon = {group = "androidx.compose.material", name="material-icons-extended-android", version.ref = "compose-bom"}
+
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 workmanager = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "workmanager" }
 workmanager-rx = { group = "androidx.work", name = "work-rxjava3", version.ref = "workmanager" }
 workmanager-multiprocess = { group = "androidx.work", name = "work-multiprocess", version.ref = "workmanager" }
 leakcanary = { group = "com.squareup.leakcanary", name = "leakcanary-android", version.ref = "leakcanary" }
+androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

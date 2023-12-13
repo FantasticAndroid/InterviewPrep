@@ -23,6 +23,6 @@ object CharsInString {
             map[it] = (map[it] ?: 0) + 1
         }
 
-        Log.d(TAG, "findDuplicateCharsInString map: $map")
+        Log.d(TAG, "findCharsInString map: $map")
     }
 }

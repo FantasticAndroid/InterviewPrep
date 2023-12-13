@@ -7,6 +7,78 @@ private const val TAG = "FindInNumberOrStringImpl"
 object FindInNumberOrStringImpl {
 
     /**
+     * Find Positive number less than the smallest number in the array
+     * [7, 8, 9, 11, 12] output = 6
+     * [1, 2, 3, 4] output = 5
+     * [1,2,4,8] output = 3
+     * [-5,-6,0,8] output = 2
+     * @param arr IntArray
+     * @return Int
+     */
+    fun findMissingMinimumPositiveIntegerFromArray(arr: IntArray): Int {
+        var pList = arr.filter { it > 0 }
+        if (pList.isEmpty()) {
+            return 1
+        }
+
+        println("First pList: ${pList.toList()}")
+        pList = pList.sorted()
+        println("Sort pList: ${pList.toList()}")
+
+        if(pList[0]>1)
+            return pList[0]-1
+
+        for (index in 0 until pList.size - 1) {
+            if (pList[index + 1] - pList[index] > 1){
+                return pList[index] + 1
+            }
+        }
+        return pList[pList.size-1] + 1
+    }
+
+
+    /**
+     * [7, 8, 9, 11, 12] output = 1
+     * [1, 2, 3, 4] output = 5
+     * [1,2,4,8] output = 3
+     * [-5,-6,0,8] output = 1
+     * https://leetcode.com/problems/first-missing-positive/
+     * @param arr IntArray
+     * @return Int
+     */
+    fun findMissingSmallestPositiveIntegerFromArray(arr: IntArray): Int {
+        var pList = arr.filter { it > 0 }
+        if (pList.isEmpty()) {
+            return 1
+        }
+
+        if(!pList.contains(1)){
+            return 1
+        }else{
+            pList = pList.sorted()
+            for (index in 0 until pList.size - 1) {
+                if (pList[index + 1] - pList[index] > 1){
+                    return pList[index] + 1
+                }
+            }
+            return pList[pList.size-1] + 1
+        }
+
+        /*pList = pList.sorted()
+
+        if(pList[0]!=1){
+            return 1
+        }else{
+            for (index in 0 until pList.size - 1) {
+                if (pList[index + 1] - pList[index] > 1){
+                    return pList[index] + 1
+                }
+            }
+            return pList[pList.size-1] + 1
+        }*/
+    }
+
+    /**
      * Example 1:
      *
      * Input: s = "abcabcbb"
@@ -85,23 +157,48 @@ object FindInNumberOrStringImpl {
         )
     }
 
+    fun findAnySmallestNoFromArrayBubbleSort(arr: Array<Int>, n: Int) {
+        if (n <= 0 || n > arr.size) {
+            Log.d(
+                TAG,
+                "findAnySmallestNoFromArrayBubbleSort arr size: ${arr.size}, n: $n, n is Invalid"
+            )
+            return
+        }
+
+        for (pass in (arr.size - 1) downTo (arr.size - n)) {
+            for (index in 0 until pass) {
+                if (arr[index + 1] > arr[index]) {
+                    val temp = arr[index]
+                    arr[index] = arr[index + 1]
+                    arr[index + 1] = temp
+                }
+            }
+        }
+
+        Log.d(
+            TAG,
+            "findAnySmallestNoFromArrayBubbleSort arr: ${arr.toList()}, $n:thSmallest: ${arr[arr.size - n]}"
+        )
+    }
+
     /**
      * From InsertionSort
      * @param arr Array<Int>
      * @param n Int, For ex n = 3 , means third smallest
      */
-    fun findAnySmallestNoFromArrayInsertionSort(arr: Array<Int>, n: Int) {
+    fun findAnySmallestNoFromArraySort(arr: Array<Int>, n: Int) {
         if (n <= 0 || n > arr.size) {
             Log.d(
                 TAG,
-                "findAnySmallestNoFromArrayInsertionSort arr size: ${arr.size}, n: $n, n is Invalid"
+                "findAnySmallestNoFromArraySort arr size: ${arr.size}, n: $n, n is Invalid"
             )
             return
         }
 
         for (pass in 0 until n) {
             var sIndex = pass
-            for (index in pass+1 until arr.size) {
+            for (index in pass + 1 until arr.size) {
                 if (arr[index] < arr[sIndex]) {
                     sIndex = index
                 }
@@ -113,7 +210,7 @@ object FindInNumberOrStringImpl {
 
         Log.d(
             TAG,
-            "findAnySmallestNoFromArrayInsertionSort arr: ${arr.toList()}, $n:Smallest: ${arr[n-1]}"
+            "findAnySmallestNoFromArraySort arr: ${arr.toList()}, $n:Smallest: ${arr[n - 1]}"
         )
     }
 

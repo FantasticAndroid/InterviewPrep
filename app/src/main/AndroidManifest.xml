@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -14,11 +15,40 @@
         android:theme="@style/Theme.OfflineFirstDemo"
         tools:targetApi="31">
         <activity
+            android:name=".compose.quoteapp.QuoteListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".compose.NotifCounterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".compose.ComposeDemoActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".compose.ThemeDemoActivity"
+            android:theme="@style/Theme.OfflineFirstDemo"
+            android:exported="false" />
+
+        <activity
+            android:name=".compose.sideeffect.SideEffectDemoActivity"
+            android:theme="@style/Theme.OfflineFirstDemo"
+            android:exported="false" />
+
+        <activity
+            android:name=".compose.sideeffect.SideEffectWithCleanUpDemoActivity"
+            android:theme="@style/Theme.OfflineFirstDemo"
+            android:exported="false" />
+
+        <activity
+            android:name=".compose.sideeffect.ProduceDerivedSideEffectDemoActivity"
+            android:theme="@style/Theme.OfflineFirstDemo"
+            android:exported="false" />
+
+        <activity
             android:name=".designpatterns.delegates.DelegateActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-
         <activity
             android:name=".MainActivity"
             android:exported="true"

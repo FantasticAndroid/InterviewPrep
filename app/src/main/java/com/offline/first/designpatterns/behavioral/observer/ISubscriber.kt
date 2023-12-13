@@ -1,6 +1,6 @@
 package com.offline.first.designpatterns.behavioral.observer
 
-interface ISubscriber {
+interface ISubscriber<T> {
 
-    fun onObserved(newVideoUrlToWatch: String)
+     fun onObserved(any: T)
 }

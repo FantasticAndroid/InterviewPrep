@@ -12,13 +12,13 @@ interface IRemote {
     fun power() {}
 }
 
-abstract class AbsRemove(device: IDevice) : IRemote {
+abstract class AbsRemote(device: IDevice) : IRemote {
     init {
         device.blinkLED() // Call when remote connected
     }
 }
 
-open class RemoteControl(private val device: IDevice) : AbsRemove(device) {
+open class RemoteControl(private val device: IDevice) : AbsRemote(device) {
     override fun setVolume(volume: Int) {
         device.volume(volume)
     }

@@ -12,13 +12,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.lifecycleScope
-import com.offline.first.designpatterns.delegates.TAG
-import com.offline.first.flow.FlowDemo
+import com.offline.first.problemsolving.AnagramImpl
 import com.offline.first.ui.theme.OfflineFirstDemoTheme
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
 
+private const val TAG = "MainActivity"
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,39 +33,19 @@ class MainActivity : ComponentActivity() {
                 ) {
                     //Greeting("Android")
                     printText("")
-                    applyDemos()
-                    //applyRunBlockingDemo()
+                    //applyDemos()
+
+                    applyRunBlockingDemo()
                 }
             }
         }
-        /*startActivity(Intent(this, DelegateActivity::class.java))
-        finish()*/
+        //startActivity(Intent(this, ProduceDerivedSideEffectDemoActivity::class.java))
+        //finish()
     }
 
     private fun applyRunBlockingDemo() {
-        Log.d(TAG,"applyRunBlockingDemo Before run-blocking")
+        /*Log.d(TAG,"applyRunBlockingDemo Before run-blocking")
         lifecycleScope.launch(Dispatchers.IO) {
-            Log.d(TAG,"applyRunBlockingDemo just entered into the runBlocking ")
-            //delay(5000)
-
-            Log.d(TAG,"applyRunBlockingDemo start of the run-blocking")
-            Log.d(TAG,"applyRunBlockingDemo End of the runBlocking")
-        }
-        Log.d(TAG,"applyRunBlockingDemo after the run blocking")
-
-        /*lifecycleScope.launch(Dispatchers.IO) {
-            Log.d(TAG,"applyRunBlockingDemo just entered into the runBlocking ")
-            //delay(5000)
-
-            Log.d(TAG,"applyRunBlockingDemo start of the run-blocking")
-            Log.d(TAG,"applyRunBlockingDemo End of the runBlocking")
-        }
-
-        Log.d(TAG,"applyRunBlockingDemo after the run blocking")*/
-
-        /*********************************/
-
-        /*runBlocking(Dispatchers.IO){
             Log.d(TAG,"applyRunBlockingDemo just entered into the runBlocking ")
             delay(5000)
 
@@ -73,77 +53,17 @@ class MainActivity : ComponentActivity() {
             Log.d(TAG,"applyRunBlockingDemo End of the runBlocking")
         }
         Log.d(TAG,"applyRunBlockingDemo after the run blocking")*/
-    }
-}
 
-fun lambdaFunExample() {
-    // It take two params and return String
-    // VariableName : FunctionType = { parameters -> method body }
-    val lambdaFun1: (Int, String) -> String = { a: Int, b: String -> b.plus(a) }
-    val lambdaFun2 = { a: Int, b: String -> b.plus(a) }
-    val lambdaFun3: (Int, String) -> String = { a, b -> b.plus(a) }
+        /*********************************/
+        Log.d(TAG,"applyRunBlockingDemo Before run-blocking")
+        runBlocking(Dispatchers.IO){
+            Log.d(TAG,"applyRunBlockingDemo just entered into the runBlocking ")
+            delay(5000)
 
-    //or
-    //There are four function types, varying based on parameters and return types.
-
-    // 1-With Parameters and No Return Value:
-    val myVariable: (Int, String) -> Unit = { a: Int, b: String -> println("$a + $b") }
-
-    // 2-With Parameters and Return Value:
-    val myVariable2: (Int, String) -> String = { a: Int, b: String -> "$a + $b" }
-
-    // 3-No Parameters and No Return Value:
-    val myVariable3: () -> Unit = { println("No Parameters and No Return Value") }
-
-    // 4-No Parameters and Return Value:
-    val myVariable4: () -> String = { "Return String" }
-
-    // 5-A variable isn't always necessary, as lambda expressions can be used directly.
-    println({ a: String, b: String -> "$a $b" }("Hüseyin", "Özkoç"))
-}
-
-/*Kotlin functions are considered “First Class Citizen” which means they can be assigned to variables,
- passed as parameters to other functions, or returned as function values.*/
-fun anonymousFunExample() {
-    //Syntax of Anonymous Function
-    /*val myVariableName: (FirstDataType,SecondDataType) -> ReturnType =
-        fun(firstParameter,secondParameter): ReturnType { MethodBody }*/
-
-    //Example of Anonymous Function:
-    val myVariable: (String, String) -> String = fun(a, b): String {
-        return "$a $b"
-    }
-
-    // Shorter Syntax Of Anonymous Function
-    /*val myVariableName = fun(FirstDataType,SecondDataType) : ReturnType { MethodBody }*/
-
-    val myVariableShort = fun(a: String, b: String): String { return "$a + $b" }
-
-    // When the method body contains just one statement,
-    // the return keyword and braces can be omitted.
-    val myVariableShorter = fun(a: String, b: String): String = "$a + $b"
-
-    // Let's explore various anonymous function formats,
-    // depending on the parameters and return type.
-
-    // 1- With Parameters and No Return Value:
-    val myVariable1 = fun(a: String, b: String): Unit {
-        println("$a $b")
-    }
-
-    // 2- With Parameters and Return Value:
-    val myVariable2 = fun(a: String, b: String): String {
-        return "$a $b"
-    }
-
-    // 3- No Parameters and No Return Value:
-    val myVariable3 = fun(): Unit {
-        println("No Parameters and No Return Value:")
-    }
-
-    // 4- No Parameters and Return Value:
-    val myVariable4 = fun(): String {
-        return "Hi!"
+            Log.d(TAG,"applyRunBlockingDemo start of the run-blocking")
+            Log.d(TAG,"applyRunBlockingDemo End of the runBlocking")
+        }
+        Log.d(TAG,"applyRunBlockingDemo after the run blocking")
     }
 }
 
@@ -274,10 +194,21 @@ private fun applyDemos() {
     //LeetCode.findBitwiseXORArray(intArrayOf(5,2,0,3,1))
     //LinkListNode.main()
 
-    FlowDemo.flowOfDemo()
+    /*FlowDemo.flowOfDemo()
     FlowDemo.asFlowDemo()
     FlowDemo.flowDemo()
-    FlowDemo.channelFlowDemo()
+    FlowDemo.channelFlowDemo()*/
+
+    /*Demo.demoBubbleSort()
+    Demo.demoInsertionSort()
+    Demo.demoSelectionSort()*/
+    //QuickSort.applyQuickSortDemo()
+    //Demo.demoQuickSort()
+    //FindKthLargestNo.demoQuickSort()
+
+    //AnagramImpl.findAnagramWithStringBuilder("anagram","nagaram")
+
+    AnagramImpl.findAndGroupAnagram(arrayOf("eat","tea","tan","ate","nat","bat"))
 }
 
 @Composable

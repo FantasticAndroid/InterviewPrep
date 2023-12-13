@@ -6,7 +6,7 @@ private const val TAG = "ArrayIntersectionImpl"
 object ArrayIntersectionImpl {
 
     /**
-     *
+     * Find Common Elements from 2 arraysz
      * @param array1 Array<Int>
      * @param array2 Array<Int>
      */

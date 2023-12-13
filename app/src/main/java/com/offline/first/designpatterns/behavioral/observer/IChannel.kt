@@ -1,9 +1,9 @@
 package com.offline.first.designpatterns.behavioral.observer
 
-interface IChannel {
+interface IChannel<T> {
 
-    fun subscribe(subscriber:  ISubscriber)
-    fun unSubscribe(subscriber:  ISubscriber)
+    fun subscribe(subscriber:  ISubscriber<T>)
+    fun unSubscribe(subscriber:  ISubscriber<T>)
 
-    fun notifySubscriber(newVideoUrlToWatch: String)
+    fun notifySubscriber(any: T)
 }

@@ -71,6 +71,7 @@ object QuickSort {
 
     fun applyQuickSortDemo() {
         Log.d(TAG, "applyQuickSortDemo")
+        //val arr = intArrayOf(15,5,6,0,4,8,1,9,2, 8, 5, 6, 3, 20, 25, 4, 17, 89, 100, 7, 13, 19, 500)
         val arr = arrayOf(7, 11, 9, 2, 12, 4, 0, 12, -5, 13)
         Log.d(TAG, "SortStart: ${arr.toList()}")
         quickSort(arr, 0, arr.size - 1)

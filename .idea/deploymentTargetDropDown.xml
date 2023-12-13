@@ -3,34 +3,12 @@
   <component name="deploymentTargetDropDown">
     <value>
       <entry key="app">
-        <State>
-          <targetSelectedWithDropDown>
-            <Target>
-              <type value="QUICK_BOOT_TARGET" />
-              <deviceKey>
-                <Key>
-                  <type value="VIRTUAL_DEVICE_PATH" />
-                  <value value="C:\Users\DELL\.android\avd\Pixel_API_33.avd" />
-                </Key>
-              </deviceKey>
-            </Target>
-          </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2023-10-20T14:41:33.660991100Z" />
-        </State>
-      </entry>
-      <entry key="isApplicationContext()">
         <State />
       </entry>
       <entry key="isFileDeleted()">
         <State />
       </entry>
       <entry key="leakcanarylib">
-        <State />
-      </entry>
-      <entry key="willThrowException()">
-        <State />
-      </entry>
-      <entry key="willThrowExceptions()">
         <State />
       </entry>
     </value>
